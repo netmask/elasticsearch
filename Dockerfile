@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM dockerfile/java:oracle-java7
+FROM dockerfile/java:oracle-java8
 
 # Install ElasticSearch.
 RUN \
@@ -23,6 +23,8 @@ ADD config/elasticsearch.yml /elasticsearch/config/elasticsearch.yml
 
 # Define working directory.
 WORKDIR /data
+
+RUN /elasticsearch/bin/plugin -i elasticsearch/marvel/latest
 
 # Define default command.
 CMD ["/elasticsearch/bin/elasticsearch"]
